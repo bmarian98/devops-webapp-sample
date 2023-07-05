@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'maven:3.8.1-jdk-11'
+            image 'maven:3.8.3-openjdk-17'
             args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
@@ -33,7 +33,7 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Build docker image') {
             steps {
                 script {
                     app = docker.build("devops-webapp-sample-bm")
