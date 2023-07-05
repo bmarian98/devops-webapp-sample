@@ -22,31 +22,9 @@ pipeline {
                 }
             steps {
                 script{
-                    sh 'echo I\'m on test branch'
-                }
-            }
-        }
-
-        stage('Run Unit Tests'){
-            steps {
-                script {
-                    sh 'mvn test'
-                }
-            }
-        }
-
-        stage('Compile Maven Code'){
-            steps {
-                script {
-                    sh 'mvn test'
-                }
-            }
-        }
-
-        stage('Build') {
-            steps {
-                script {
-                    app = docker.build("devops-webapp-sample-bm")
+                    sh '''
+                    echo I'm on test branch
+                    '''
                 }
             }
         }
