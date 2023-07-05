@@ -15,27 +15,21 @@ pipeline {
         }
 
         stage('Run Unit Tests'){
-            agent {
-                docker {
-                    image 'maven:3.6.3-openjdk-17'
-                }
-            }
             steps {
                 script {
-                    sh 'mvn test'
+                    docker.image('maven:3.6.3-openjdk-17').inside{
+                        sh 'mvn test'
+                        }
                 }
             }
         }
 
         stage('Compile Maven Code'){
-            agent {
-                docker {
-                    image 'maven:3.6.3-openjdk-17'
-                }
-            }
             steps {
                 script {
-                    sh 'mvn -B package'
+                    docker.image('maven:3.6.3-openjdk-17').inside{
+                        sh 'mvn -B package'
+                    }
                 }
             }
         }
