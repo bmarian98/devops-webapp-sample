@@ -30,8 +30,8 @@ pipeline {
         stage('Compile Maven Code'){
             agent {
                 docker {
-                        image 'maven:3.6.3-openjdk-17'
-                        }
+                    image 'maven:3.6.3-openjdk-17'
+                }
             }
             steps {
                 script {
