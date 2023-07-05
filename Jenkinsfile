@@ -22,9 +22,7 @@ pipeline {
                 }
             steps {
                 script{
-                    sh '''
-                    echo I'm on test branch
-                    '''
+                    echo "I'm on test branch"
                 }
             }
         }
