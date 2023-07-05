@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'centos-3'
+        label 'linux'
     }
     options {
         skipStagesAfterUnstable()
@@ -10,14 +10,6 @@ pipeline {
             steps {
                 script {
                     checkout scm
-                }
-            }
-        }
-
-        stage('Install maven'){
-            steps {
-                script {
-                    sh 'yum install -y maven'
                 }
             }
         }
