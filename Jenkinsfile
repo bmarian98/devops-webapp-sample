@@ -39,5 +39,16 @@ pipeline {
                 }
             }
         }
+
+        stage ('Print msg on test branch'){
+            steps {
+                when{
+                    branch 'test'
+                }
+                script{
+                    sh 'echo I\'m on test branch'
+                }
+            }
+        }
     }
 }
