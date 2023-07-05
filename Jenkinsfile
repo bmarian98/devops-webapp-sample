@@ -16,6 +16,17 @@ pipeline {
             }
         }
 
+        stage ('Print msg on test branch'){
+            when{
+                    branch 'test'
+                }
+            steps {
+                script{
+                    sh 'echo I\'m on test branch'
+                }
+            }
+        }
+
         stage('Run Unit Tests'){
             steps {
                 script {
@@ -36,17 +47,6 @@ pipeline {
             steps {
                 script {
                     app = docker.build("devops-webapp-sample-bm")
-                }
-            }
-        }
-
-        stage ('Print msg on test branch'){
-            steps {
-                when{
-                    branch 'test'
-                }
-                script{
-                    sh 'echo I\'m on test branch'
                 }
             }
         }
