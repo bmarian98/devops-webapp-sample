@@ -10,23 +10,23 @@ pipeline {
     stages {
          stage('Clone repository') {
             steps {
-                script{
+                script {
                     checkout scm
                 }
             }
         }
 
         stage('Run Unit Tests'){
-            step{
-                script{
+            steps {
+                script {
                     sh 'mvn test'
                 }
             }
         }
 
         stage('Compile Maven Code'){
-            step{
-                script{
+            steps {
+                script {
                     sh 'mvn test'
                 }
             }
@@ -34,7 +34,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                script{
+                script {
                     app = docker.build("devops-webapp-sample-bm")
                 }
             }
