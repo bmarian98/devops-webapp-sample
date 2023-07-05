@@ -14,6 +14,14 @@ pipeline {
             }
         }
 
+        stage('Install maven'){
+            steps {
+                script {
+                    sh 'yum install -y maven'
+                }
+            }
+        }
+
         stage('Run Unit Tests'){
             steps {
                 script {
