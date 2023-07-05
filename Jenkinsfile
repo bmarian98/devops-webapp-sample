@@ -1,6 +1,9 @@
 pipeline {
     agent {
-        label 'linux'
+        docker {
+            image 'maven:3.8.1-jdk-11'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
+        }
     }
     options {
         skipStagesAfterUnstable()
@@ -25,7 +28,7 @@ pipeline {
         stage('Compile Maven Code'){
             steps {
                 script {
-                    sh 'mvn test'
+                    sh 'mvn -B package'
                 }
             }
         }
