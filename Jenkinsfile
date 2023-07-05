@@ -1,10 +1,6 @@
 pipeline {
     agent {
-        docker {
-            image 'maven:3.6.3-openjdk-17'
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
-        }
+        label 'docker'
     }
     options {
         skipStagesAfterUnstable()
@@ -19,6 +15,11 @@ pipeline {
         }
 
         stage('Run Unit Tests'){
+            agent {
+                docker {
+            image 'maven:3.6.3-openjdk-17'
+        }
+            }
             steps {
                 script {
                     sh 'mvn test'
@@ -27,6 +28,10 @@ pipeline {
         }
 
         stage('Compile Maven Code'){
+            agent {
+                docker {
+            image 'maven:3.6.3-openjdk-17'
+        }
             steps {
                 script {
                     sh 'mvn -B package'
@@ -37,7 +42,7 @@ pipeline {
         stage('Build docker image') {
             steps {
                 script {
-                    sh 'docker build -t devops-webapp-sample-bm .'
+                    app = docker.build("devops-webapp-sample-bm")
                 }
             }
         }
