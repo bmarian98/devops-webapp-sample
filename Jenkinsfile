@@ -1,8 +1,6 @@
 pipeline {
     agent {
-        node {
-            label 'centos-1'
-        }
+        label 'centos-3'
     }
     options {
         skipStagesAfterUnstable()
