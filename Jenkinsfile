@@ -37,7 +37,7 @@ pipeline {
         stage('Build docker image') {
             steps {
                 script {
-                    docker.build("devops-webapp-sample-bm")
+                    sh 'docker build -t devops-webapp-sample-bm .'
                 }
             }
         }
